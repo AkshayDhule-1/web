@@ -1,85 +1,33 @@
-function checkEmptyField(fieldId) {
-  alert('checkEmptyField ' + fieldId);
-}
+<!DOCTYPE html>
+<html>
 
-function validate() {
-  //var x = document.getElementById('uname').value;
-  var x= document.getElementsByName('uname').values;
-  var y = document.getElementById('upass').value;
-
-  console.log('value of x ' + x);
-  console.log('value of y ' + y);
-
-  if (x === "") {
-    document.getElementById("nameErr").innerHTML = "Username cannot be blank";
-    return false;
-  }
-
-  if (y === "") {
-    document.getElementById("passErr").innerHTML = "Password cannot be blank";
-    return false;
-  }
+<head>
+<meta charset="UTF-8">
+	<title>Login here</title>
+	<link rel="stylesheet" href="Login3.css">
+	<script src = "Validation.js"></script>
+</head>
 	
-  // Password must be at least 8 characters long
-  if (y.length < 8) {
-    return false;
-  }
-
-  // Password must contain at least one uppercase letter
-  if (!/[A-Z]/.test(y)) {
-    return false;
-  }
-
-  // Password must contain at least one lowercase letter
-  if (!/[a-z]/.test(y)) {
-    return false;
-  }
-
-  // Password must contain at least one digit
-  if (!/\d/.test(y)) {
-    return false;
-  }
-
-
-  
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  var ueamil = document.getElementById('ueamil').value;
-  if(ueamil==""){
-		document.getElementById("emailError").innerHTML = "Email cannot be blank";
-    	return false;  
-  }
-  
-  if (!emailRegex.test(ueamil)) {
-    return false;
-  }
 	
-  var date = document.getElementById(udob).value;
-  const currentDate = new Date();
-  if(currentDate==null){
-	return false;
-   }
-	
-   if(date>currentDate){
-	return false;
-   }
+	<body>
+		
+		<h1>My Airlines</h1>	
+		<hr>
+		<h2>Login Here</h2>	
+		<form action ="Dashboard.html">
+			<label>Enter username</label> <input  type=text     onkeyup="clearNameErrMsg()" id="uname"><span id="nameErr"></span><br>
+			<label>Enter password</label> <input  type=password onkeyup="clearPassErrMsg()" id="upass"><span id="passErr"></span><br>	
+			Not a member yet? Click <a href="Register.html">Here</a> to register<br>	
+			Reset password? Click <a href="ResetPassword.html">Here</a><br>	
+			Forgot password? Click <a href="ForgotPassword.html">Here</a><br>	
+			
+			<button onclick="return validate();" type="submit">Login</button>	<br>
+		</form>
+		
+			<button onclick="clearForm()" style="background-color: lightgreen">Clear</button>
+		
+		
+		
+	</body>
 
-    return true;
-}
-
-
-
-
-
-
-function clearTheForm() {
-  document.getElementById('uname').value = "";
-  document.getElementById('upass').value = "";
-}
-
-function clearNameErrMsg() {
-  document.getElementById('nameErr').innerHTML = "";
-}
-
-function clearPassErrMsg() {
-  document.getElementById('passErr').innerHTML = "";
-}
+</html>
