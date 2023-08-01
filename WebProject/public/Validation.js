@@ -6,10 +6,11 @@ function checkEmptyField(fieldId) {
 }
 
 function validate() {
-
-  var x= document.getElementsByName('uname').value;
+  var x = document.getElementById('uname').value;
+  
   var y = document.getElementById('upass').value;
-
+ 
+	
   console.log('value of x ' + x);
   console.log('value of y ' + y);
 
@@ -43,37 +44,57 @@ function validate() {
 	  alert("Password must contain at least one digit");
     return false;
   }
-
-
   
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  var ueamil = document.getElementById('uemail').value;
-  if(ueamil==""){
-	  	alert("Email cannot be blank");
-		document.getElementById("uemail").innerHTML = "Email cannot be blank";
-    	return false;  
-  }
-  
-  if (!emailRegex.test(ueamil)) {
-    return false;
-  }
-	
-  var date = document.getElementById(udob).value;
-  const currentDate = new Date();
-  if(currentDate==null){
-	return false;
-   }
-	
-   if(date>currentDate){
-	return false;
-   }
-
     return true;
 }
 
+
+
+ function validateAge() {
+	 		
+	 		
+	 		 var z= document.getElementsByName('udob').value;
+	
+	/*		if(z==undefined){
+				  document.getElementById("dateErr").innerHTML = "Date cannot be empty";
+    		return false;
+			}
+				console.log('Z value is : '+z);
+				*/
+            
+            var dobInput = document.getElementById('udob').value;
+            var dob = new Date(dobInput);
+            var today = new Date();
+
+            var age = today.getFullYear() - dob.getFullYear();
+
+            if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            document.getElementById('udob').textContent = "Age: " + age;
+
+            if (age > 18) {
+                return true;
+            } else {
+                alert('You must be 18+');
+                return false;
+            }
+        }
+
+
+
 function validateRegistration()
 {
+	
+	var eml = document.getElementById('uemail').value;
+  //var x= document.getElementsByName('uname').value;
+ 
 
+  	if (eml === "") {
+    	document.getElementById("emailError").innerHTML = "Email cannot be blank";
+    	return false;
+ 	 }
 	  const emailRegex =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 	  var mail = document.getElementById('uemail').value;
 	  
@@ -87,17 +108,27 @@ function validateRegistration()
 	    return false;
 	  }
 	  
-	if(validate()==false){
+	  
+	var z= document.getElementsByName('udob').value;
+	console.log(z);
+	
+	if(!validate()){
 		return false;
 	}
+	
+	if(!validateAge()){
+		return false;
+	}
+
 
 	  return true;
 }
 
-
-function clearTheForm() {
+function clearForm() {
+	document.getElementById('uemail').value = "";
   document.getElementById('uname').value = "";
   document.getElementById('upass').value = "";
+  
 }
 
 function clearNameErrMsg() {
