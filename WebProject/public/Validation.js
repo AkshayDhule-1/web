@@ -39,8 +39,10 @@ function validate() {
   if (!/\d/.test(y)) {
     return false;
   }
+
+
   
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   var ueamil = document.getElementById('ueamil').value;
   if(ueamil==""){
 		document.getElementById("emailError").innerHTML = "Email cannot be blank";
