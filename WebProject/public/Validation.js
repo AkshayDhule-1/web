@@ -54,17 +54,17 @@ function validate() {
     return false;
   }
 	
-	var date = document.getElementById(udob).value;
-	const currentDate = new Date();
-	if(currentDate==null){
-		return false;
-	}
+  var date = document.getElementById(udob).value;
+  const currentDate = new Date();
+  if(currentDate==null){
+	return false;
+   }
 	
-	if(date>currentDate){
-		return false;
-	}
+   if(date>currentDate){
+	return false;
+   }
 
-	return true;
+    return true;
 }
 
 
