@@ -11,7 +11,6 @@ function validate() {
   console.log('value of y ' + y);
 
   if (x === "") {
-     alert(")
     document.getElementById("nameErr").innerHTML = "Username cannot be blank";
     return false;
   }
