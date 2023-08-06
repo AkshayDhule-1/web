@@ -17,7 +17,9 @@ public class TestBusesService {
 	public void selectTest() {
 		
 		System.out.println("Test started..");
+		
 		Assertions.assertTrue(busDAO!=null);
+		
 		System.out.println("Got the DAO : "+busDAO);
 
 		Buses bus = busDAO.selectBus(103);
@@ -25,6 +27,7 @@ public class TestBusesService {
 		System.out.println("Buses Obj : "+bus);
 
 		System.out.println("Test over...");
+		
 	}
 
 }

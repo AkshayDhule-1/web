@@ -22,18 +22,28 @@ public class UserDAOImplementation extends BaseDAO implements UserDAO {
 	public void insertUser(User user) {
 		try {
 			PreparedStatement pst = 
-					conn.prepareStatement("INSERT INTO USER VALUES (?,?,?,?,?,?,?,?,?,?)");
+					conn.prepareStatement("INSERT INTO USER VALUES (?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			
-			pst.setInt(1, user.getUserId());
+//			pst.setInt(1, user.getUserId());
 			pst.setString(2, user.getUsername());
-			pst.setString(3,user.getPassword());
-			pst.setString(4, user.getFirstName());
-			pst.setString(5, user.getLastName());
-			pst.setString(6, user.getEmail());
-			pst.setString(7, user.getPhoneNumber());
+			pst.setString(6,user.getPassword());
+			pst.setString(3, user.getFirstName());
+			pst.setString(4, user.getLastName());
+			pst.setString(7, user.getEmail());
+			pst.setString(5, user.getPhoneNumber());
 			pst.setString(8, user.getAddress());
 			pst.setDate(9, (Date) user.getDateOfBirth());
 			pst.setString(10, user.getGender());
+			
+			
+			try (ResultSet generatedKeys = pst.getGeneratedKeys()) {
+	            if (generatedKeys.next()) {
+	                int uid = generatedKeys.getInt(1);
+	                user.setUserId(uid);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 			
 			System.out.println("PreparedStatement is created : "+ pst);
 			
@@ -58,18 +68,18 @@ public class UserDAOImplementation extends BaseDAO implements UserDAO {
 			System.out.println("Statement is created : "+ statement);
 			
 			//4. execute that statement //  UR TABLENAME IS MYDEPT120
-			ResultSet result = statement.executeQuery("SELECT * FROM USER WHERE USERID="+userID);
+			ResultSet result = statement.executeQuery("SELECT * FROM USER WHERE UID="+userID);
 			
 				while(result.next()) {
 					userObj = new User(); 
 				
 					userObj.setUserId(result.getInt(1));
 					userObj.setUsername(result.getString(2));
-					userObj.setPassword(result.getString(3));
-					userObj.setFirstName(result.getString(4));
-					userObj.setLastName(result.getString(5));
-					userObj.setEmail(result.getString(6));
-					userObj.setPhoneNumber(result.getString(7));
+					userObj.setPassword(result.getString(6));
+					userObj.setFirstName(result.getString(3));
+					userObj.setLastName(result.getString(4));
+					userObj.setEmail(result.getString(7));
+					userObj.setPhoneNumber(result.getString(5));
 					userObj.setAddress(result.getString(8));
 					userObj.setDateOfBirth(result.getDate(9));
 					userObj.setGender(result.getString(10));
@@ -101,11 +111,11 @@ public class UserDAOImplementation extends BaseDAO implements UserDAO {
 				User userObj = new User(); 
 				userObj.setUserId(result.getInt(1));
 				userObj.setUsername(result.getString(2));
-				userObj.setPassword(result.getString(3));
-				userObj.setFirstName(result.getString(4));
-				userObj.setLastName(result.getString(5));
-				userObj.setEmail(result.getString(6));
-				userObj.setPhoneNumber(result.getString(7));
+				userObj.setPassword(result.getString(6));
+				userObj.setFirstName(result.getString(3));
+				userObj.setLastName(result.getString(4));
+				userObj.setEmail(result.getString(7));
+				userObj.setPhoneNumber(result.getString(5));
 				userObj.setAddress(result.getString(8));
 				userObj.setDateOfBirth(result.getDate(9));
 				userObj.setGender(result.getString(10));
@@ -128,10 +138,10 @@ public class UserDAOImplementation extends BaseDAO implements UserDAO {
 			PreparedStatement pst = 
 					conn.prepareStatement("UPDATE USER set userName=? where userId=?");
 			
-			pst.setInt(1, user.getUserId());
-			pst.setString(2, user.getUsername());
+			pst.setInt(2, user.getUserId());
+			pst.setString(1, user.getUsername());
 			pst.setString(3,user.getPassword());
-			pst.setString(4, user.getFirstName());
+			pst.setString(3, user.getFirstName());
 			pst.setString(5, user.getLastName());
 			pst.setString(6, user.getEmail());
 			pst.setString(7, user.getPhoneNumber());

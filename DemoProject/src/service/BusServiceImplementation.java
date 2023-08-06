@@ -1,6 +1,8 @@
 package service;
 
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,35 @@ import java.time.format.DateTimeFormatter;
 
 public class BusServiceImplementation implements BusService{
 
+	
+	
+	int getAvailableSeats(int busId,Time time, Date date) {
+		
+		Date currentDate =  new Date(System.currentTimeMillis());
+		
+		BusesDAO busDAO = new BusesDAOImplementation();
+	 	Buses bus = busDAO.selectBus(busId);
+		
+		List<Ticket> lt = new ArrayList();
+		TicketDAO ticketDAO = new TicketDAOImplementation();
+		int count =0;	
+		lt = ticketDAO.selectTickets(currentDate);
+		
+		for(Ticket t : lt) {
+			
+			System.out.println(t.getTime() +"=="+time + "&&" +t.getBusId() +"==" +busId+"&&"+t.getJourneyDate()+"=="+date+"\ns");
+			if(t.getTime() ==time && t.getBusId() == busId && t.getJourneyDate()==date) {
+				count = count + t.getNoOfSeats();
+			}
+			System.out.println(count);
+		}
+		
+		int seatAvailable = bus.getTotalSeats() - count;
+		
+		
+		return seatAvailable;
+	}
+	
 	@Override
 	public List<AvailableBuses> showAvailableBuses(String src, String dest, Date date) {
 		// TODO Auto-generated method stub
@@ -49,8 +80,14 @@ public class BusServiceImplementation implements BusService{
 			 	
 			 	BusesDAO busDAO = new BusesDAOImplementation();
 			 	Buses bus = busDAO.selectBus(tobj.getBusId());
-	 			
-			 	if(bus.getAvailableSeats()>0) {
+			 	Time tm = tobj.getTime();
+			 	
+//			 	int seatAvl = getAvailableSeats(tobj.getBusId(),tm,date);
+			 		
+			
+//			 	if(seatAvl>0) {
+			 	
+			 	if(bus.getAvailableSeats() >= 0) {
 			 		
 			 		avlbus.setBusId(bus.getBusId());
 				 	avlbus.setBusNumber(bus.getBusNumber());
@@ -68,7 +105,6 @@ public class BusServiceImplementation implements BusService{
 				 	
 				 	avlBusesList.add(avlbus);
 			 	}
- 	
 			 	
 			}
 		
@@ -80,11 +116,10 @@ public class BusServiceImplementation implements BusService{
 	@Override
 	public Ticket selectBuses(AvailableBuses bus,int seats, User user) {
 		
+		TicketDAO ticketDAO = new TicketDAOImplementation();
 		Ticket ticket = new Ticket();
 		if(bus.getAvailableSeats()>=seats) {
-			
-			TicketDAO ticketDAO = new TicketDAOImplementation();
-	
+				
 			ticket.setUid(user.getUserId());
 			ticket.setTime(bus.getTime());
 			ticket.setBusId(bus.getBusId());
@@ -96,9 +131,8 @@ public class BusServiceImplementation implements BusService{
 			
 			ticketDAO.insertTicket(ticket);
 		}
-		else {
-			return null;
-		}
+	
+//		System.out.println("\n\nTicket = "+ticket.getTid());
 		
 		return ticket;
 	}
@@ -143,7 +177,7 @@ public class BusServiceImplementation implements BusService{
 		bookTicket.setAmountPaid(ticket.getAmountPaid());
 		bookTicket.setSrc(route.getSrc());
 		bookTicket.setDest(route.getDest());
-		bookTicket.setJourneyDate(route.getJourneyTime());
+		bookTicket.setJourneyTime(route.getJourneyTime());
 		bookTicket.setDistance(route.getDistance());
 		
 		
@@ -157,11 +191,26 @@ public class BusServiceImplementation implements BusService{
 	public static void main(String[] args) {
 		BusService busService = new BusServiceImplementation();
 		
-		List<AvailableBuses> avlBus = busService.showAvailableBuses("Nagpur", "Mumbai",Date.valueOf("2023-08-05"));
+		List<AvailableBuses> avlBus = busService.showAvailableBuses("City A", "City B",Date.valueOf("2026-08-05"));
 		
 		for(AvailableBuses bus : avlBus) {
 			System.out.println(bus);
 		}
+		
+		UserDAO userDAO = new UserDAOImplementation();
+		
+				
+		User user = userDAO.selectUser(2);
+		
+		Ticket ticket = busService.selectBuses(avlBus.get(0),1,user);
+		
+		
+		BookedTicket bTicket = busService.bookTicket(ticket);
+		
+		System.out.println(bTicket);
+		
+		
+		
 		
 	}
 
