@@ -1,4 +1,7 @@
 
+------------  CHECK THE NAME OF DATABASSE IN BasicDAO  -----------------
+
+
   INSERT INTO ticket (uid, time, busId, JourneyDate, status, BookedDate, NoOfSeats, amountPaid)
 VALUES
     (5, '08:30:00', 202, '2023-08-09', 'Booked', '2023-08-07', 3, 1820.00),
