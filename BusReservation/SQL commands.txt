@@ -1,4 +1,21 @@
 
+
+
+---------- For seat number
+
+CREATE TABLE ticket_seat (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tid INT,
+    seatNumber INT,
+    FOREIGN KEY (tid) REFERENCES ticket(tid)
+);
+
+INSERT INTO ticket_seat (tid, seatNumber)
+VALUES (1, 12);
+
+INSERT INTO ticket_seat (tid, seatNumber)
+VALUES (1, 13);
+
 ------------  CHECK THE NAME OF DATABASSE IN BasicDAO  -----------------
 
 
