@@ -284,6 +284,15 @@ CREATE TABLE ticket (
 );
 
 
+CREATE TABLE ticket_seat (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tid INT,
+    seatNumber INT,
+    FOREIGN KEY (tid) REFERENCES ticket(tid)
+);
+
+
+
 INSERT INTO user ( username, firstName, lastName, mobile, pass, email, addresss, dob, gender)
 VALUES
     ('john_doe', 'John', 'Doe', '1234567890', 'password123', 'john.doe@example.com', '123 Main Street, City', '1990-05-15', 'Male'),
