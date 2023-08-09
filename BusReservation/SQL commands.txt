@@ -159,6 +159,8 @@ VALUES
     (112, 'Sangli', 'Kolhapur', '02:45:00', 150.7);
 
 
+
+
 INSERT INTO travelTime (time, rid, busid)
 VALUES
     ('07:00:00', 101, 201),
@@ -173,8 +175,6 @@ VALUES
     ('22:45:00', 110, 210),
     ('00:15:00', 111, 211),
     ('02:00:00', 112, 212);
-
-
 
 
 INSERT INTO ticket (uid, time, busId, JourneyDate, status, BookedDate, NoOfSeats, amountPaid)
