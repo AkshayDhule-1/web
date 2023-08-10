@@ -1,3 +1,34 @@
+public String toString() {
+			System.out.println("  - - - Available Buses ---  ");
+					
+			System.out.println( "Bus Id=" + busId );
+			System.out.println("Bus Number =" + busNumber);
+			System.out.println("Travel Agency= " + travelAgency);
+			System.out.println("Bus Type = "+ busType);
+			System.out.println("No. of Available Seats= "+availableSeats);
+			System.out.println("Total Seats = "+ totalSeats);
+			System.out.println("Fare = "+fare);
+			System.out.println("Source = "+ src);
+			System.out.println("Destination= "+dest);
+			System.out.println("Journey Date= "+journeyDate);
+			System.out.println("Journey Time = "+ journeyTime);
+			System.out.println("Distance = "+ distance);
+			System.out.println("Time = "+time);
+	
+			
+//				System.out.println("Available Seat Numbers = ");
+//	
+//				for(int i=0;i<availableSeatNumbers.length;i++) {
+//					if(availableSeatNumbers[i]==false) {
+//						System.out.println(i+1);
+//					}
+//					
+//				}		
+					return "";
+		}
+
+
+
 	@GET
 	@Path("/ticket")
 	public BookedTicket showTicket() {
