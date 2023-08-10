@@ -1,3 +1,38 @@
+	@GET
+	@Path("/ticket")
+	public BookedTicket showTicket() {
+
+
+	
+	UserDAO userDAO = new UserDAOImplementation();
+	
+	
+	User user = userDAO.selectUser(9);
+	
+	
+	BookedTicket bTicket = busService.bookTicket(1);
+	
+	return bTicket;
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 package service;
 
 import java.sql.Date;
