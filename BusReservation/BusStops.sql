@@ -7,7 +7,7 @@ CREATE TABLE Stops (
     SequenceNumber INT,
     distance FLOAT,
     price FLOAT,
-    FOREIGN KEY (RouteId) REFERENCES Routes(RouteId)
+    FOREIGN KEY (RouteId) REFERENCES Route(RouteId)
 );
 
 
