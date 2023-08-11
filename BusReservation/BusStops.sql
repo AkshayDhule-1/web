@@ -52,6 +52,37 @@ VALUES
     (113, 8, 'Nagpur', ,12.50);
 
 
+package service.stops;
+
+import dao.stop.StopDAO;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import dao.stop.Stop;
+import dao.stop.StopDAOImplementation;
+
+public class RouteServiceTest {
+	public static void main(String[] args) {
+		
+		
+		
+		RouteService routeService = new RouteServiceImplementation();
+		routeService.insertIntoStops(113, 0, "Pune", 0, 0);
+		routeService.insertIntoStops(113, 1, "Nashik", 163, 345);
+		routeService.insertIntoStops(113, 2, "Aurangabad", 309, 651);
+		routeService.insertIntoStops(113, 3, "Jalna", 370, 780);
+		routeService.insertIntoStops(113, 4, "Mehkar", 452, 953);
+		routeService.insertIntoStops(113, 5, "Karanja", 567, 1196);
+		routeService.insertIntoStops(113, 6, "Pulgaon", 580, 1223);
+		routeService.insertIntoStops(113, 7, "Wardha", 615, 1297);
+		routeService.insertIntoStops(113, 8, "Nagpur", 765, 1615);
+		
+		
+		
+		
+	}
+}
 
 
 CREATE TABLE BusStops (
