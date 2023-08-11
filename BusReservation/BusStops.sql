@@ -10,6 +10,23 @@ CREATE TABLE BusStops (
     FOREIGN KEY (rid) REFERENCES Route(rid)
 );
 
+CREATE TABLE ticket (
+    tid INT PRIMARY KEY AUTO_INCREMENT,
+    uid INT,
+    rid INT, -- Adding rid as a foreign key
+    time TIME,
+    busId INT,
+    JourneyDate DATE,
+    status VARCHAR(10),
+    BookedDate DATE,
+    NoOfSeats INT,
+    amountPaid FLOAT,
+    FOREIGN KEY (uid) REFERENCES user(uid),
+    FOREIGN KEY (busId) REFERENCES bus(busId),
+    FOREIGN KEY (time, busId) REFERENCES travelTime(time, busId),
+    FOREIGN KEY (rid) REFERENCES Route(rid) -- Adding the foreign key reference to Route table
+);
+
 
 INSERT INTO BusStops (rid, stopid, stops, distance, price)
 VALUES
