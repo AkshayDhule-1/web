@@ -1,5 +1,3 @@
-
-
 CREATE TABLE BusStops (
     rid INT,
     stopid INT,
@@ -7,8 +5,10 @@ CREATE TABLE BusStops (
     distance FLOAT,
     price FLOAT,
     PRIMARY KEY (rid, stopid),
-    FOREIGN KEY (rid) REFERENCES Route(rid)
+    FOREIGN KEY (rid) REFERENCES Route(rid),
+    INDEX idx_stopId (stopid) 
 );
+
 
 CREATE TABLE ticket (
     tid INT PRIMARY KEY AUTO_INCREMENT,
