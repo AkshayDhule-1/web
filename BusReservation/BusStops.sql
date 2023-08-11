@@ -1,13 +1,24 @@
-CREATE TABLE BusStops (
-    rid INT,
-    stopid INT,
-    stops VARCHAR(255),
+
+
+CREATE TABLE Stops (
+    StopId INT PRIMARY KEY,
+    RouteId INT,
+    StopName VARCHAR(255),
+    SequenceNumber INT,
     distance FLOAT,
     price FLOAT,
-    PRIMARY KEY (rid, stopid),
-    FOREIGN KEY (rid) REFERENCES Route(rid),
-    INDEX idx_stopId (stopid) 
+    FOREIGN KEY (RouteId) REFERENCES Routes(RouteId)
 );
+
+
+SELECT s.StopId, s.StopName, s.SequenceNumber
+FROM Stops AS s
+JOIN Stops AS start ON s.RouteId = start.RouteId AND start.StopName = 'Stop 2A'
+JOIN Stops AS end ON s.RouteId = end.RouteId AND end.StopName = 'Stop 4A'
+WHERE s.SequenceNumber BETWEEN start.SequenceNumber AND end.SequenceNumber
+AND s.RouteId = start.RouteId  -- To ensure the same route
+ORDER BY s.SequenceNumber;
+
 
 
 CREATE TABLE ticket (
@@ -39,3 +50,15 @@ VALUES
     (113, 6, 'Pulgaon', ,15.00),
     (113, 7, 'Wardha', ,20.00),
     (113, 8, 'Nagpur', ,12.50);
+
+
+
+
+CREATE TABLE BusStops (
+
+
+    PRIMARY KEY (rid, stopid),
+    FOREIGN KEY (rid) REFERENCES Route(rid),
+    INDEX idx_stopId (stopid) 
+);
+
