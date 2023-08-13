@@ -272,7 +272,8 @@ public class RouteServiceTest {
 }
 
 
-
+I am calculating journey time in BusStops table by dividing the Distance by 50.
+	example : Distance = 700 then 700 km /50  =   14 hr journey time
 
 ---------------------------------------------------
 CREATE TABLE BusStops (
