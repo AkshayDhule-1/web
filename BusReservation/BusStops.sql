@@ -1,14 +1,16 @@
 
 
-CREATE TABLE Stops (
-    StopId INT PRIMARY KEY,
-    RouteId INT,
+CREATE TABLE BusStops (
+    StopId INT,
+    rid INT,
     StopName VARCHAR(255),
     SequenceNumber INT,
     distance FLOAT,
     price FLOAT,
-    FOREIGN KEY (RouteId) REFERENCES Route(RouteId)
+    PRIMARY KEY (StopId, RouteId),
+    FOREIGN KEY (rid) REFERENCES Routes(rid)
 );
+
 
 
 SELECT s.StopId, s.StopName, s.SequenceNumber
@@ -24,7 +26,9 @@ ORDER BY s.SequenceNumber;
 CREATE TABLE ticket (
     tid INT PRIMARY KEY AUTO_INCREMENT,
     uid INT,
-    rid INT, -- Adding rid as a foreign key
+    rid INT, 
+    FromStopId INT,
+    ToStopId INT,
     time TIME,
     busId INT,
     JourneyDate DATE,
@@ -35,21 +39,22 @@ CREATE TABLE ticket (
     FOREIGN KEY (uid) REFERENCES user(uid),
     FOREIGN KEY (busId) REFERENCES bus(busId),
     FOREIGN KEY (time, busId) REFERENCES travelTime(time, busId),
-    FOREIGN KEY (rid) REFERENCES Route(rid) -- Adding the foreign key reference to Route table
+    FOREIGN KEY (FromStopId, rid) REFERENCES BusStops(StopId, rid),
+    FOREIGN KEY (ToStopId, rid) REFERENCES BusStops(StopId, rid)
 );
 
 
 INSERT INTO BusStops (rid, stopid, stops, distance, price)
 VALUES
-    (113, 0, 'Pune', ,10.00),
-    (113, 1, 'Nashik', , 15.00),
-    (113, 2, 'Aurangabad', , 20.00),
-    (113, 3, 'Jalna', ,12.50),
-    (113, 4, 'Mehkar', ,18.00),
-    (113, 5, 'Karanja', ,10.00),
-    (113, 6, 'Pulgaon', ,15.00),
-    (113, 7, 'Wardha', ,20.00),
-    (113, 8, 'Nagpur', ,12.50);
+    (113, 0, "Pune", 0, 0),
+    (113, 1, "Nashik", 163, 345),
+    (113, 2, "Aurangabad", 309, 651),
+    (113, 3, "Jalna", 370, 780),
+    (113, 4, "Mehkar", 452, 953),
+    (113, 5, "Karanja", 567, 1196),
+    (113, 6, "Pulgaon", 580, 1223),
+    (113, 7, "Wardha", 615, 1297),
+    (113, 8, "Nagpur", 765, 1615);
 
 
 package service.stops;
@@ -85,9 +90,10 @@ public class RouteServiceTest {
 }
 
 
+
+
+---------------------------------------------------
 CREATE TABLE BusStops (
-
-
     PRIMARY KEY (rid, stopid),
     FOREIGN KEY (rid) REFERENCES Route(rid),
     INDEX idx_stopId (stopid) 
