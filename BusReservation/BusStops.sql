@@ -26,6 +26,11 @@ CREATE TABLE route (
     distance FLOAT
 );
 
+CREATE TABLE Stops (
+    stopId INT PRIMARY KEY,
+    stopName VARCHAR(255)
+);
+
 CREATE TABLE bus (
     busId INT PRIMARY KEY,
     busNumber VARCHAR(20) NOT NULL,
