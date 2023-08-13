@@ -200,14 +200,13 @@ VALUES
 
 ---------------------------------------------------------------------------------------
 
-SELECT s.StopId, s.StopName, s.Sequence
+SELECT s.rid, s.StopId, s.StopName, s.Sequence
 FROM BusStops AS s
 JOIN BusStops AS start ON s.rid = start.rid AND start.StopName = 'Pune'
 JOIN BusStops AS end ON s.rid = end.rid AND end.StopName = 'Nashik'
 WHERE s.Sequence BETWEEN start.Sequence AND end.Sequence
-AND s.rid = start.rid  -- To ensure the same route
+AND s.rid = start.rid  
 ORDER BY s.Sequence;
-
 
 ---------------------------------------------------------------------------------------
 SELECT s.StopId, s.StopName, s.SequenceNumber
