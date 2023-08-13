@@ -1,4 +1,51 @@
 
+CREATE TABLE admin (
+    adminId INT PRIMARY KEY AUTO_INCREMENT,
+    password VARCHAR(255) NOT NULL
+);
+
+ CREATE TABLE user (
+    uid INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    mobile VARCHAR(15),
+    pass VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    addresss VARCHAR(255),
+    dob DATE,
+    gender varchar(10)
+);
+
+
+CREATE TABLE route (
+    rid INT PRIMARY KEY,
+    src VARCHAR(100) NOT NULL,
+    dest VARCHAR(100) NOT NULL,
+    journeyTime TIME,
+    distance FLOAT
+);
+
+CREATE TABLE bus (
+    busId INT PRIMARY KEY,
+    busNumber VARCHAR(20) NOT NULL,
+    travelAgency VARCHAR(100),
+    busType VARCHAR(50),
+    totalSeat INT NOT NULL,
+    availableSeat INT,
+    fare FLOAT
+);
+
+
+CREATE TABLE travelTime (
+    time TIME,
+    rid INT,
+    busid INT,
+    FOREIGN KEY (rid) REFERENCES route(rid),
+    FOREIGN KEY (busid) REFERENCES bus(busid),
+    PRIMARY KEY (time,busid)
+);
+
 
 CREATE TABLE BusStops (
     rid INT,
@@ -10,17 +57,6 @@ CREATE TABLE BusStops (
     PRIMARY KEY (StopId, RouteId),
     FOREIGN KEY (rid) REFERENCES Routes(rid)
 );
-
-
-
-SELECT s.StopId, s.StopName, s.SequenceNumber
-FROM Stops AS s
-JOIN Stops AS start ON s.RouteId = start.RouteId AND start.StopName = 'Stop 2A'
-JOIN Stops AS end ON s.RouteId = end.RouteId AND end.StopName = 'Stop 4A'
-WHERE s.SequenceNumber BETWEEN start.SequenceNumber AND end.SequenceNumber
-AND s.RouteId = start.RouteId  -- To ensure the same route
-ORDER BY s.SequenceNumber;
-
 
 
 CREATE TABLE ticket (
@@ -42,6 +78,28 @@ CREATE TABLE ticket (
     FOREIGN KEY (FromStopId, rid) REFERENCES BusStops(StopId, rid),
     FOREIGN KEY (ToStopId, rid) REFERENCES BusStops(StopId, rid)
 );
+
+
+CREATE TABLE ticket_seat (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tid INT,
+    seatNumber INT,
+    FOREIGN KEY (tid) REFERENCES ticket(tid)
+);
+
+
+
+
+SELECT s.StopId, s.StopName, s.SequenceNumber
+FROM Stops AS s
+JOIN Stops AS start ON s.RouteId = start.RouteId AND start.StopName = 'Stop 2A'
+JOIN Stops AS end ON s.RouteId = end.RouteId AND end.StopName = 'Stop 4A'
+WHERE s.SequenceNumber BETWEEN start.SequenceNumber AND end.SequenceNumber
+AND s.RouteId = start.RouteId  -- To ensure the same route
+ORDER BY s.SequenceNumber;
+
+
+
 
 
 INSERT INTO BusStops (rid, stopid, stops, sequence, distance, price)
