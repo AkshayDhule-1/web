@@ -156,7 +156,8 @@ VALUES
     (109, 'Jalgaon', 'Mumbai', '08:30:00', 500.0),
     (110, 'Mumbai', 'Ratnagiri', '05:30:00', 350.5),
     (111, 'Ratnagiri', 'Sangli', '06:15:00', 400.2),
-    (112, 'Sangli', 'Kolhapur', '02:45:00', 150.7);
+    (112, 'Sangli', 'Kolhapur', '02:45:00', 150.7),
+    (113, 'Pune', 'Nagpur', '14:30:00', 755);
 
 
 
@@ -174,7 +175,9 @@ VALUES
     ('21:00:00', 109, 209),
     ('22:45:00', 110, 210),
     ('00:15:00', 111, 211),
-    ('02:00:00', 112, 212);
+    ('02:00:00', 112, 212),
+    ('20:30:00', 113, 201),
+    ('20:30:00', 113, 202);
 
 
 INSERT INTO ticket (uid, time, busId, JourneyDate, status, BookedDate, NoOfSeats, amountPaid)
