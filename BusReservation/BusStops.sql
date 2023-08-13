@@ -189,6 +189,17 @@ VALUES
     ('20:30:00', 113, 202);
 
 
+INSERT INTO Stops (stopId, stopName)
+VALUES
+    (10, "Pune"),
+    (11, "Nashik"),
+    (12, "Aurangabad"),
+    (13, "Jalna"),
+    (14, "Mehkar"),
+    (15, "Karanja"),
+    (16, "Pulgaon"),
+    (17, "Wardha"),
+    (18, "Nagpur");
 
 
 INSERT INTO BusStops (rid, stopid, stopName, sequence, distance, price)
