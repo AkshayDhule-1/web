@@ -198,7 +198,18 @@ VALUES
     (113, 17, "Wardha", 7, 615, 1297),
     (113, 18, "Nagpur", 8, 765, 1615);
 
+---------------------------------------------------------------------------------------
 
+SELECT s.StopId, s.StopName, s.Sequence
+FROM BusStops AS s
+JOIN BusStops AS start ON s.rid = start.rid AND start.StopName = 'Pune'
+JOIN BusStops AS end ON s.rid = end.rid AND end.StopName = 'Nashik'
+WHERE s.Sequence BETWEEN start.Sequence AND end.Sequence
+AND s.rid = start.rid  -- To ensure the same route
+ORDER BY s.Sequence;
+
+
+---------------------------------------------------------------------------------------
 SELECT s.StopId, s.StopName, s.SequenceNumber
 FROM Stops AS s
 JOIN Stops AS start ON s.RouteId = start.RouteId AND start.StopName = 'Stop 2A'
