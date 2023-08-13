@@ -4,7 +4,7 @@ CREATE TABLE BusStops (
     rid INT,
     StopId INT,
     StopName VARCHAR(255),
-    SequenceNumber INT,
+    Sequence INT,
     distance FLOAT,
     price FLOAT,
     PRIMARY KEY (StopId, RouteId),
@@ -44,17 +44,17 @@ CREATE TABLE ticket (
 );
 
 
-INSERT INTO BusStops (rid, stopid, stops, distance, price)
+INSERT INTO BusStops (rid, stopid, stops, sequence, distance, price)
 VALUES
-    (113, 0, "Pune", 0, 0),
-    (113, 1, "Nashik", 163, 345),
-    (113, 2, "Aurangabad", 309, 651),
-    (113, 3, "Jalna", 370, 780),
-    (113, 4, "Mehkar", 452, 953),
-    (113, 5, "Karanja", 567, 1196),
-    (113, 6, "Pulgaon", 580, 1223),
-    (113, 7, "Wardha", 615, 1297),
-    (113, 8, "Nagpur", 765, 1615);
+    (113, 23, "Pune", 0, 0, 0),
+    (113, 14, "Nashik", 1, 163, 345),
+    (113, 43, "Aurangabad", 2, 309, 651),
+    (113, 52, "Jalna", 3, 370, 780),
+    (113, 44, "Mehkar", 4, 452, 953),
+    (113, 62, "Karanja", 5, 567, 1196),
+    (113, 20, "Pulgaon", 6, 580, 1223),
+    (113, 32, "Wardha", 7, 615, 1297),
+    (113, 53, "Nagpur", 8, 765, 1615);
 
 
 package service.stops;
