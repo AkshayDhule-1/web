@@ -55,7 +55,7 @@ CREATE TABLE BusStops (
     distance FLOAT,
     price FLOAT,
     PRIMARY KEY (StopId, rid),
-    FOREIGN KEY (rid) REFERENCES Routes(rid)
+    FOREIGN KEY (rid) REFERENCES Route(rid)
 );
 
 
