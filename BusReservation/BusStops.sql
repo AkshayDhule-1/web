@@ -1,8 +1,8 @@
 
 
 CREATE TABLE BusStops (
-    StopId INT,
     rid INT,
+    StopId INT,
     StopName VARCHAR(255),
     SequenceNumber INT,
     distance FLOAT,
