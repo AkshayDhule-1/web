@@ -186,7 +186,7 @@ VALUES
 
 
 
-INSERT INTO BusStops (rid, stopid, stops, sequence, distance, price)
+INSERT INTO BusStops (rid, stopid, stopName, sequence, distance, price)
 VALUES
     (113, 23, "Pune", 0, 0, 0),
     (113, 14, "Nashik", 1, 163, 345),
