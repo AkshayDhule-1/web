@@ -185,17 +185,6 @@ VALUES
 
 
 
-SELECT s.StopId, s.StopName, s.SequenceNumber
-FROM Stops AS s
-JOIN Stops AS start ON s.RouteId = start.RouteId AND start.StopName = 'Stop 2A'
-JOIN Stops AS end ON s.RouteId = end.RouteId AND end.StopName = 'Stop 4A'
-WHERE s.SequenceNumber BETWEEN start.SequenceNumber AND end.SequenceNumber
-AND s.RouteId = start.RouteId  -- To ensure the same route
-ORDER BY s.SequenceNumber;
-
-
-
-
 
 INSERT INTO BusStops (rid, stopid, stops, sequence, distance, price)
 VALUES
@@ -208,6 +197,20 @@ VALUES
     (113, 20, "Pulgaon", 6, 580, 1223),
     (113, 32, "Wardha", 7, 615, 1297),
     (113, 53, "Nagpur", 8, 765, 1615);
+
+
+SELECT s.StopId, s.StopName, s.SequenceNumber
+FROM Stops AS s
+JOIN Stops AS start ON s.RouteId = start.RouteId AND start.StopName = 'Stop 2A'
+JOIN Stops AS end ON s.RouteId = end.RouteId AND end.StopName = 'Stop 4A'
+WHERE s.SequenceNumber BETWEEN start.SequenceNumber AND end.SequenceNumber
+AND s.RouteId = start.RouteId  -- To ensure the same route
+ORDER BY s.SequenceNumber;
+
+
+
+
+
 
 
 package service.stops;
