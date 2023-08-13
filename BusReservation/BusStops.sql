@@ -188,15 +188,15 @@ VALUES
 
 INSERT INTO BusStops (rid, stopid, stopName, sequence, distance, price)
 VALUES
-    (113, 23, "Pune", 0, 0, 0),
-    (113, 14, "Nashik", 1, 163, 345),
-    (113, 43, "Aurangabad", 2, 309, 651),
-    (113, 52, "Jalna", 3, 370, 780),
-    (113, 44, "Mehkar", 4, 452, 953),
-    (113, 62, "Karanja", 5, 567, 1196),
-    (113, 20, "Pulgaon", 6, 580, 1223),
-    (113, 32, "Wardha", 7, 615, 1297),
-    (113, 53, "Nagpur", 8, 765, 1615);
+    (113, 10, "Pune", 0, 0, 0),
+    (113, 11, "Nashik", 1, 163, 345),
+    (113, 12, "Aurangabad", 2, 309, 651),
+    (113, 13, "Jalna", 3, 370, 780),
+    (113, 14, "Mehkar", 4, 452, 953),
+    (113, 15, "Karanja", 5, 567, 1196),
+    (113, 16, "Pulgaon", 6, 580, 1223),
+    (113, 17, "Wardha", 7, 615, 1297),
+    (113, 18, "Nagpur", 8, 765, 1615);
 
 
 SELECT s.StopId, s.StopName, s.SequenceNumber
