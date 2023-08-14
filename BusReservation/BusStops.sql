@@ -215,7 +215,19 @@ VALUES
     (113, 18, "Nagpur", 8, 765, 1615);
 
 ---------------------------------------------------------------------------------------
+-- TO get the unique Rid from which we can get the busid and hence the bus information
+SELECT DISTINCT s.rid
+FROM BusStops AS s
+JOIN BusStops AS start ON s.rid = start.rid AND start.StopName = 'Pune'
+JOIN BusStops AS end ON s.rid = end.rid AND end.StopName = 'Nashik'
+WHERE s.Sequence BETWEEN start.Sequence AND end.Sequence
+AND s.rid = start.rid  
+ORDER BY s.rid;
 
+
+
+------ TO get the rid StopId StopName and sequence 
+	---------------------
 SELECT s.rid, s.StopId, s.StopName, s.Sequence
 FROM BusStops AS s
 JOIN BusStops AS start ON s.rid = start.rid AND start.StopName = 'Pune'
