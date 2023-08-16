@@ -244,6 +244,9 @@ WHERE (s.Sequence = start.Sequence OR s.Sequence = end.Sequence)
     AND s.rid = start.rid  
 ORDER BY s.rid;
 
+
+
+
 ---- To get the number of available seats in bus
 SELECT busId, time, journeyDate, rid, ToStopId, SUM(NoOfSeats) AS TotalSeatCount
 FROM ticket
@@ -256,7 +259,10 @@ WHERE status = 'Booked'
 GROUP BY busId, time, journeyDate, rid, ToStopId
 HAVING SUM(NoOfSeats) > 0
 ORDER BY busId, time, journeyDate, rid, ToStopId;
-
+--------------------------------	
+public int getTotalBookedSeats(int busId, Time time, Date journeyDate, int toStopId) {
+		// TODO Auto-generated method stub
+}
 
 ===========================================================================================================================
 ------ TO get the rid StopId StopName and sequence  this will give the sequence from source to destination all stops
