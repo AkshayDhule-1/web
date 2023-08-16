@@ -224,9 +224,19 @@ WHERE s.Sequence BETWEEN start.Sequence AND end.Sequence
 AND s.rid = start.rid  
 ORDER BY s.rid;
 
+------------------------------------------------------------------------
+--- To get the only start and stop. Source and destination of stops: 
+SELECT s.rid, s.StopId, s.StopName, s.Sequence
+FROM BusStops AS s
+JOIN BusStops AS start ON s.rid = start.rid AND start.StopName = 'Pune'
+JOIN BusStops AS end ON s.rid = end.rid AND end.StopName = 'Wardha'
+WHERE (s.Sequence = start.Sequence OR s.Sequence = end.Sequence)
+    AND s.rid = start.rid  
+ORDER BY s.Sequence;
 
 
------- TO get the rid StopId StopName and sequence 
+
+------ TO get the rid StopId StopName and sequence  this will give the sequence from source to destination all stops
 	---------------------
 SELECT s.rid, s.StopId, s.StopName, s.Sequence
 FROM BusStops AS s
