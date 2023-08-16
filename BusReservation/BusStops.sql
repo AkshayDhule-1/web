@@ -244,6 +244,20 @@ WHERE (s.Sequence = start.Sequence OR s.Sequence = end.Sequence)
     AND s.rid = start.rid  
 ORDER BY s.rid;
 
+---- To get the number of available seats in bus
+SELECT busId, time, journeyDate, rid, ToStopId, SUM(NoOfSeats) AS TotalSeatCount
+FROM ticket
+WHERE status = 'Booked'
+    AND busId = 202
+    AND time = '20:30:00'
+    AND journeyDate = '2023-08-18'
+    AND rid = 113
+    AND ToStopId = 11
+GROUP BY busId, time, journeyDate, rid, ToStopId
+HAVING SUM(NoOfSeats) > 0
+ORDER BY busId, time, journeyDate, rid, ToStopId;
+
+
 ===========================================================================================================================
 ------ TO get the rid StopId StopName and sequence  this will give the sequence from source to destination all stops
 	---------------------
@@ -305,6 +319,8 @@ public class RouteServiceTest {
 
 I am calculating journey time in BusStops table by dividing the Distance by 50.
 	example : Distance = 700 then 700 km /50  =   14 hr journey time
+	Boarding time for inbetween stops = distance / 50;
+	
 	And price = distance * 2.11 (RS) ; -- 2.11 rs per km
 ---------------------------------------------------
 CREATE TABLE BusStops (
