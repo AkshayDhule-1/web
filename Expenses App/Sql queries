@@ -2,9 +2,9 @@
 CREATE TABLE Expenses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
-    CategoryID INT NOT NULL,
+    CategoryID INT,
     Date DATE NOT NULL,
-    Time TIME NOT NULL,
+    Time TIME,
     Amount DECIMAL(10, 2) NOT NULL,
     IncomeID INT,
     FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
