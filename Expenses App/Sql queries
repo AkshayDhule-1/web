@@ -1,0 +1,60 @@
+
+CREATE TABLE Expenses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    CategoryID INT NOT NULL,
+    Date DATE NOT NULL,
+    Time TIME NOT NULL,
+    Amount DECIMAL(10, 2) NOT NULL,
+    IncomeID INT,
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
+    FOREIGN KEY (IncomeID) REFERENCES Income(IncomeID)
+);
+
+CREATE TABLE Categories (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE Income (
+    IncomeID INT AUTO_INCREMENT PRIMARY KEY,
+    Date DATE NOT NULL,
+    Amount DECIMAL(10, 2) NOT NULL
+);
+
+
+
++-----------+------------+--------+
+| IncomeID  |    Date    | Amount |
++-----------+------------+--------+
+|     1     | 2023-09-15 |  1000  |
+|     2     | 2023-09-16 |  1500  |
+|     3     | 2023-09-17 |  1200  |
++-----------+------------+--------+
+
+
++----+---------+------------+------------+----------+--------+
+| id |   Name  | CategoryID |    Date    |   Time   | Amount |
++----+---------+------------+------------+----------+--------+
+|  1 |  Lunch  |     1      | 2023-09-15 | 12:00 PM |   50   |
+|  2 | Dinner  |     1      | 2023-09-15 |  9:00 PM |   80   |
+|  3 | Petrol  |     2      | 2023-09-15 |  6:00 PM |  470   |
+|  4 |  Shirt  |     3      | 2023-09-15 |  7:00 PM |  800   |
+|  5 |  Pant   |     3      | 2023-09-16 |  8:00 PM | 1000   |
+|  6 | Grocery |     1      | 2023-09-16 |  3:00 PM |  200   |
+|  7 |  Rent   |     4      | 2023-09-17 | 11:00 AM |  500   |
++----+---------+------------+------------+----------+--------+
+
+
+
++------------+--------------+
+| CategoryID | CategoryName |
++------------+--------------+
+|     1      |     Food     |
+|     2      |    Petrol    |
+|     3      |    Cloths    |
+|     4      |    Rent      |
+|     5      |    Others    |
++------------+--------------+
+
