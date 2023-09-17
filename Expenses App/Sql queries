@@ -1,3 +1,13 @@
+on Mac
+-- To check mysql version
+$ mysql --version
+
+-- To start mysql
+$ mysql -u root -p
+password: root
+password: root1234
+
+
 -- Create the Users table
 CREATE TABLE Users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
