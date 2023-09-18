@@ -103,6 +103,15 @@ VALUES
     ('Personal');
 
 
+INSERT INTO Expense_Tag_Mapping (expense_id, tag_id)
+VALUES
+    (1, 1), -- Map expense 1 to tag 1
+    (2, 2), -- Map expense 2 to tag 2
+    (3, 3), -- Map expense 3 to tag 3
+    (4, 4); -- Map expense 4 to tag 4
+
+
+
 
 ----------------------------------------------------------------------------------------------------
 Table: Users
@@ -166,9 +175,6 @@ Table: Expense-Tag Mapping (optional)
 |     4      |     3      |   2    |
 |     5      |     4      |   3    |
 +------------+------------+--------+
-
-
-
 
 
 
