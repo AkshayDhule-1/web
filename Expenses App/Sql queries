@@ -8,6 +8,7 @@ $ mysql -u root -p
 password: root
 password: root1234
 
+Six tables
 
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
