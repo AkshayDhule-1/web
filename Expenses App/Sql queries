@@ -1,3 +1,4 @@
+
 on Mac
 -- To check mysql version
 $ mysql --version
@@ -10,7 +11,7 @@ password: root1234
 
 -- Create the Users table
 CREATE TABLE Users (
-    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     username TEXT NOT NULL,
     mobile_number TEXT NOT NULL,
     password TEXT NOT NULL,
@@ -21,32 +22,29 @@ CREATE TABLE Users (
 
 -- Create the Payment_Methods table
 CREATE TABLE Payment_Methods (
-    method_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    method_name TEXT DEFAULT 'Personal',
+    method_id INT PRIMARY KEY AUTO_INCREMENT,
+    method_name VARCHAR(255) DEFAULT 'Personal', -- Use VARCHAR instead of TEXT
     bank_name TEXT
 );
 
--- Insert default payment methods (Cash and PhonePay)
-INSERT INTO Payment_Methods (method_name) VALUES ('Cash');
-INSERT INTO Payment_Methods (method_name) VALUES ('PhonePay');
 
--- Create the Expense Categories table
+-- Create the Expense_Categories table
 CREATE TABLE Expense_Categories (
-    category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name TEXT NOT NULL,
-    user_id INTEGER NOT NULL,
+    user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users (user_id)
 );
 
 -- Create the Expenses table
 CREATE TABLE Expenses (
-    expense_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    category_id INTEGER NOT NULL,
+    expense_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    category_id INT NOT NULL,
     expense_name TEXT,
     date DATE NOT NULL,
     time TIME NOT NULL,
-    payment_method_id INTEGER NOT NULL,
+    payment_method_id INT NOT NULL,
     amount REAL NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users (user_id),
     FOREIGN KEY (category_id) REFERENCES Expense_Categories (category_id),
@@ -54,23 +52,24 @@ CREATE TABLE Expenses (
 );
 
 -- Create the Tags table (optional, if you want to implement tagging)
---  table with a default tag_name of "Personal"
+-- table with a default tag_name of "Personal"
+-- Create the Tags table
 CREATE TABLE Tags (
-    tag_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    tag_name TEXT NOT NULL DEFAULT 'Personal'
+    tag_id INT PRIMARY KEY AUTO_INCREMENT,
+    tag_name VARCHAR(255) NOT NULL DEFAULT 'Personal'
 );
 
--- Insert data into the Tags table (including the default tag_name)
---INSERT INTO Tags (tag_name) VALUES (NULL);  -- Inserts "Personal" as the default tag_name
---INSERT INTO Tags (tag_name) VALUES ('Business');
---INSERT INTO Tags (tag_name) VALUES ('Travel');
 
+-- Insert data into the Tags table (including the default tag_name)
+-- INSERT INTO Tags (tag_name) VALUES (NULL);  -- Inserts "Personal" as the default tag_name
+-- INSERT INTO Tags (tag_name) VALUES ('Business');
+-- INSERT INTO Tags (tag_name) VALUES ('Travel');
 
 -- Create the Expense-Tag Mapping table (optional, for Many-to-Many relationship between Expenses and Tags)
 CREATE TABLE Expense_Tag_Mapping (
-    mapping_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    expense_id INTEGER NOT NULL,
-    tag_id INTEGER NOT NULL,
+    mapping_id INT PRIMARY KEY AUTO_INCREMENT,
+    expense_id INT NOT NULL,
+    tag_id INT NOT NULL,
     FOREIGN KEY (expense_id) REFERENCES Expenses (expense_id),
     FOREIGN KEY (tag_id) REFERENCES Tags (tag_id)
 );
