@@ -91,7 +91,7 @@ Table: Payment_Methods
 |    1      |    Cash      |   (null)  |
 |    2      |   PhonePay   |   (null)  |
 |    3      | Bank Transfer| HDFC Bank |
-|    4      | Bank Transfer| ABC Bank  |
+|    4      | Bank Transfer| SBI Bank  |
 +-----------+--------------+-----------+
 
 Table: Expense Categories
