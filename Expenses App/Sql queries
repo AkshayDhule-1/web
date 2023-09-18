@@ -73,7 +73,50 @@ CREATE TABLE Expense_Tag_Mapping (
     FOREIGN KEY (expense_id) REFERENCES Expenses (expense_id),
     FOREIGN KEY (tag_id) REFERENCES Tags (tag_id)
 );
+-----------------------------------------------------------------------------------------------------
+INSERT INTO Users (username, mobile_number, password, email, first_name, last_name)
+VALUES
+    ('user1', '1234567890', 'password1', 'user1@example.com', 'John', 'Doe'),
+    ('user2', '9876543210', 'password2', 'user2@example.com', 'Jane', 'Smith'),
+    ('user3', '5555555555', 'password3', 'user3@example.com', 'Alice', 'Johnson'),
+    ('user4', '8888888888', 'password4', 'user4@example.com', 'Bob', 'Williams'),
+    ('user5', '7777777777', 'password5', 'user5@example.com', 'Eve', 'Brown');
 
+INSERT INTO Payment_Methods (method_name, bank_name)
+VALUES
+    ('Credit Card', 'Bank of America'),
+    ('Debit Card', 'Wells Fargo'),
+    ('PayPal', NULL),
+    ('Cash', NULL),
+    ('Check', 'Chase');
+
+INSERT INTO Expense_Categories (category_name, user_id)
+VALUES
+    ('Groceries', 1),
+    ('Utilities', 2),
+    ('Entertainment', 3),
+    ('Dining Out', 4),
+    ('Travel', 5);
+
+INSERT INTO Expenses (user_id, category_id, expense_name, date, time, payment_method_id, amount)
+VALUES
+    (1, 1, 'Grocery shopping', '2023-09-18', '12:30:00', 1, 100.00),
+    (2, 2, 'Electric bill', '2023-09-18', '15:45:00', 2, 75.50),
+    (3, 3, 'Movie night', '2023-09-17', '20:15:00', 3, 40.00),
+    (4, 4, 'Dinner at a restaurant', '2023-09-16', '19:00:00', 4, 60.75),
+    (5, 5, 'Weekend getaway', '2023-09-15', '09:00:00', 5, 200.00);
+
+INSERT INTO Tags (tag_name)
+VALUES
+    ('Food'),
+    ('Entertainment'),
+    ('Bills'),
+    ('Travel'),
+    ('Personal');
+
+
+
+----------------------------------------------------------------------------------------------------
 Table: Users
 +---------+----------+---------------+--------------+----------------------+------------+-----------+
 | user_id | username | mobile_number |  password    |        email         | first_name | last_name |
