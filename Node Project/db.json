@@ -1,0 +1,51 @@
+{
+  "posts": [
+    {
+      "title": "json-server",
+      "message": "Scheherazade"
+    },
+    {
+      "title": "title2",
+      "message": "Scheherazade"
+    },
+    {
+      "title": "dfd-server",
+      "message": "Scheherazade"
+    }
+  ],
+  "persons": [
+    
+    {
+      "id": 1,
+      "name": "Raj",
+      "age": 29,
+      "child": "Riya"
+    },
+    {
+      "id": 2,
+      "name": "Riya",
+      "age": 20,
+      "child": "Priya"
+    },
+    {
+      "id": 3,
+      "name": "rekha"
+    },
+    {
+      "id": 5,
+      "name": "riya",
+      "age": 20,
+      "child": ""
+    },
+    {
+      "id": 6,
+      "name": "riya",
+      "age": 40,
+      "child": ""
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
