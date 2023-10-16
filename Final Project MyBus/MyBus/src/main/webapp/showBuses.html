@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Bus Information</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f3f3f3;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0;
+		}
+
+		.from {
+			position: absolute;
+			top: 40px;
+			margin-right: 60px;
+			right: 110px;
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		.price {
+			position: absolute;
+			bottom: 50px;
+			right: 110px;
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		.bus-card {
+			background-color: #ffffff;
+			border-radius: 8px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			margin: 10px;
+			width: 600px;
+			/* Increase the width as needed */
+			position: relative;
+		}
+
+		.bus-card h2 {
+			font-size: 18px;
+			margin: 0;
+			font-weight: bold;
+		}
+
+		.bus-card p {
+			font-size: 14px;
+			margin: 0;
+		}
+
+
+
+		.button {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="busCards">
+		<!-- Bus cards will be dynamically generated here -->
+		<h1>Available Buses</h1>
+	</div>
+
+	<script>
+		var data = window.location.search;
+		var params = new URLSearchParams(data);
+		var src = params.get("source_curr");
+		var trg = params.get("target_curr");
+		var dt = params.get("JourneyDate");
+
+		console.log(src);
+		console.log(trg);
+		console.log(dt);
+		console.log("Data fetched Successfully");
+
+		// URL to fetch the JSON data from (use template literals)
+		const apiUrl = `http://localhost:8071/MyBus/rest/busService/showbuses/${src}/${trg}/${dt}`;
+
+		// Function to handle button click
+
+		// Function to fetch and display JSON data
+		async function fetchAndDisplayData() {
+			try {
+				const response = await fetch(apiUrl);
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				const jsonData = await response.json();
+
+				const busCards = document.getElementById('busCards');
+				jsonData.forEach((bus, index) => {
+					const busCard = document.createElement('div');
+					busCard.className = 'bus-card';
+					busCard.innerHTML = `
+                        <h2 class = "title">${bus.travelAgency}</h2>
+                        <br>
+                        <p>Bus Number: ${bus.busNumber}     Bus Type: ${bus.busType}</p>
+                        <p>Available Seats: ${bus.availableSeats}  Total Seats: ${bus.totalSeats}</p>
+                        <p class="from">${bus.src} - ${bus.dest}</p>
+                        <p>Date: ${bus.journeyDate}        Bus Time: ${bus.time}   Distance: ${bus.distance} km    </p>
+                        <p class="price">Rs.${bus.fare}</p>
+                        <br>
+                        <a class="button" onclick="handleButtonClick('${bus.busId}', '${bus.journeyDate}', '${bus.time}', '${bus.availableSeats}', '${bus.travelAgency}')">select Bus</a>
+                    `;
+
+					busCards.appendChild(busCard);
+				});
+			} catch (error) {
+				console.error('Error fetching or displaying data:', error);
+			}
+		}
+
+
+		function handleButtonClick(busId, dt, tm, seats, agency) {
+			// Redirect to the booking page and pass the bus data as query parameters\
+			console.log(`Book button clicked for BusId ${busId} (Date: ${dt})(Time : ${tm}")(seats : ${seats}")(agency : ${agency}")`);
+			//const bookingUrl = `booking.html?travelAgency=${encodeURIComponent(travelAgency)}&busId=${busId}&fare=${fare}`;
+			//const bookingUrl = `booking.html`;
+			const bookingUrl = `booking.html?busId=${encodeURIComponent(busId)}&date=${dt}&time=${tm}&seats=${seats}&agency=${agency}`;
+			window.location.href = bookingUrl;
+		
+
+		}
+
+		// Call the fetchAndDisplayData function to fetch and display the JSON data
+		fetchAndDisplayData();
+	</script>
+</body>
+
+</html>
