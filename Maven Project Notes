@@ -7,6 +7,11 @@ https://youtu.be/NUjTpc1YG5s?si=IoGv-mDE2QbgeFZR
 
 Steps to follow in java Maven web project
 
+IF the ClassNOTFoundExpception occurs that is due to org.glassfsh or
+You have to do Maven clean and then Maven install and then Maven upgrade, 
+or Maven source download (because may be the error is due to the files may not
+have been downloaded successfuly)
+
 Youtube video For Authentication and authorization in java
 In REST Api Maven Project
 
